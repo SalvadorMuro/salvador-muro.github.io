@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects - Salvador Muro</title>
+    <link rel="stylesheet" href="css/developedApplications.css">
+</head>
+    <div class="container">
+        <h1>My Projects</h1>
+    </div>
+
+    <div class="container" style="justify-content: center; margin-top: -10px;">
+        <a href="https://github.com/SalvadorMuro/SMProjects/tree/main" target="_blank" class="github-link">View on GitHub</a>
+    </div>
+
+    <hr>
+
+<body>
+    <div>
+        <h3>My Developed Games</h3>
+
+        <div class="container">
+            <div class="showcase">
+                <h4>Michelin Stars in Another World</h4>
+                <div class="slideshow" data-images='["Assets/MSIAWSS1.png", "Assets/MSIAWSS2.png", "Assets/MSIAWSS3.png", "Assets/MSIAWSS4.png", "Assets/MSIAWSS5.png", "Assets/MSIAWSS6.png", "Assets/MSIAWSS7.png"]'>
+                <img src="Assets/MSIAWSS1.png" alt="MSIAW Slideshow"></div>
+                <p>This is a 2D platformer where the player can play as different characters to attain the most Michelin Stars as they explore each level.</p>
+            </div>
+            <div class="showcase">
+                <h4>Room for One More</h4>
+                <div class="slideshow" data-images='["Assets/RFOMSS1.png", "Assets/RFOMSS2.png", "Assets/RFOMSS3.png"]'>
+                <img src="Assets/RFOMSS1.png" alt="RFOM Slideshow"></div>
+                <p>This is a roguelike survival where the player's goal is to survive as long as possible.</p>
+            </div>
+            <!--<div class="showcase">
+                <h4>Hoenn Pokedex</h4>
+                <img src="Assets/pokedex_Hoenn.png" alt="Hoenn Pokedex project screenshot">
+                <p>This is an application that uses the RESTFUL PokeAPI to create a pokedex for the Hoenn region.</p>
+            </div>-->
+        </div>
+    </div>
+
+    <!--make sure to use <hr> before making a new section-->
+    
+
+    <hr>
+    <div class="links">
+        <a href="resume.html">Salvador A. Muro's Resume</a>
+        <a href="index.html">About Salvador A. Muro</a>
+    </div>
+
+</body>
+
+<script>
+  document.querySelectorAll(".slideshow").forEach(slideshow => {
+    const images = JSON.parse(slideshow.dataset.images);
+    let index = 0;
+
+    // Create two <img> elements for crossfading
+    const img1 = document.createElement("img");
+    const img2 = document.createElement("img");
+
+    [img1, img2].forEach(img => {
+      img.src = images[0];
+      img.alt = "Game slideshow image";
+      slideshow.appendChild(img);
+      img.classList.add("fade-img");
+    });
+
+    img1.classList.add("active");
+    let active = img1;
+    let next = img2;
+
+    setInterval(() => {
+      index = (index + 1) % images.length;
+      next.src = images[index];
+
+      // Fade out current, fade in next
+      active.classList.remove("active");
+      next.classList.add("active");
+
+      // Swap them
+      [active, next] = [next, active];
+    }, 3000);
+  });
+</script>
+</html>
